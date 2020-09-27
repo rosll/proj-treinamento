@@ -1,7 +1,8 @@
 import { Router } from 'express';
+import cursosRouter from './cursos.routes';
 
 const routes = Router();
 
-routes.get('/', (request, response) => response.json({ message: 'pimba' }));
+routes.use('/cursos', cursosRouter);
 
 export default routes;
