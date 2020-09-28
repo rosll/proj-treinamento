@@ -3,16 +3,19 @@ import {
   Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('cursos')
-class Cursos {
+@Entity('funcionarios')
+class Funcionarios {
   @PrimaryGeneratedColumn('uuid')
-  curso_id: string;
+  funcionario_id: string;
 
   @Column()
-  nome_curso: string;
+  nome: string;
 
   @Column()
-  carga_horaria: number;
+  email: string;
+
+  @Column()
+  foto: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -21,4 +24,4 @@ class Cursos {
   updated_at: Date;
 }
 
-export default Cursos;
+export default Funcionarios;
