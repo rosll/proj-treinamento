@@ -40,12 +40,23 @@ funcionariosRouter.get('/:id_funcionario', async (request, response) => {
   return response.json(cursocr);
 });
 
+funcionariosRouter.put('/:id_funcionario', async (request, response) => {
+  const funcionariosRepository = getRepository(Funcionarios);
+
+  const { id_funcionario } = request.params;
+  const { nome, email, foto } = request.body;
+
+  await funcionariosRepository.findOne(id_funcionario);
+
+  return response.json({ nome, email, foto });
+});
+
 funcionariosRouter.delete('/:id_funcionario', async (request, response) => {
   const funcionariosRepository = getRepository(Funcionarios);
   const { id_funcionario } = request.params;
   await funcionariosRepository.delete(id_funcionario);
 
-  return response.send();
+  return response.send('Funcionário Deletado!');
 });
 
 export default funcionariosRouter;

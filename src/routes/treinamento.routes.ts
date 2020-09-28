@@ -41,11 +41,22 @@ treinamentoRouter.get('/:id_trein', async (request, response) => {
   return response.json(treinamentocr);
 });
 
+treinamentoRouter.put('/:id_trein', async (request, response) => {
+  const treinamentoRepository = getRepository(Treinamento);
+
+  const { id_trein } = request.params;
+  const { func_id, curs_id, data_tr } = request.body;
+
+  await treinamentoRepository.findOne(id_trein);
+
+  return response.json({ func_id, curs_id, data_tr });
+});
+
 treinamentoRouter.delete('/:id_trein', async (request, response) => {
   const treinamentoRepository = getRepository(Treinamento);
   const { id_trein } = request.params;
   await treinamentoRepository.delete(id_trein);
-  return response.send('');
+  return response.send('Treinamento Deletado!');
 });
 
 export default treinamentoRouter;
